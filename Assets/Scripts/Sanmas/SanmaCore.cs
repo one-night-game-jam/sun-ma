@@ -7,11 +7,14 @@ namespace Sanmas
 {
     public class SanmaCore : MonoBehaviour
     {
-        readonly AsyncSubject<Vector2> _launch = new AsyncSubject<Vector2>();
+        readonly ISubject<Vector2> _launch = new AsyncSubject<Vector2>();
         public IObservable<Vector2> OnLaunchAsObservable => _launch;
 
         Vector2 _gravity;
         public Vector2 Gravity => _gravity;
+
+        readonly ISubject<Unit> _freeze = new AsyncSubject<Unit>();
+        public IObservable<Unit> OnFreezedAsObservable => _freeze;
 
         public void Launch(Vector2 velocity)
         {
@@ -22,6 +25,12 @@ namespace Sanmas
         public void UpdateGravity(Vector2 gravity)
         {
             _gravity = gravity;
+        }
+
+        public void Freeze()
+        {
+            _freeze.OnNext(Unit.Default);
+            _freeze.OnCompleted();
         }
 
         void OnTriggerEnter2D(Collider2D other)

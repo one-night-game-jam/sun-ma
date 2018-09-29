@@ -14,6 +14,10 @@ namespace Sanmas
                 .ObserveOn(Scheduler.MainThreadFixedUpdate)
                 .Subscribe(Launch)
                 .AddTo(this);
+
+            _core.OnFreezedAsObservable
+                .Subscribe(_ => _rigidbody.bodyType = RigidbodyType2D.Static)
+                .AddTo(this);
         }
 
         void Launch(Vector2 force)
