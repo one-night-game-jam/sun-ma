@@ -16,7 +16,7 @@ namespace Sanmas
         readonly ISubject<Unit> _freeze = new AsyncSubject<Unit>();
         public IObservable<Unit> OnFreezedAsObservable => _freeze;
 
-        readonly ReactiveProperty<float> _broiledValue = new ReactiveProperty<float>();
+        readonly FloatReactiveProperty _broiledValue = new FloatReactiveProperty();
         public IReadOnlyReactiveProperty<float> BroiledValue => _broiledValue;
 
         public void Launch(Vector2 velocity)
