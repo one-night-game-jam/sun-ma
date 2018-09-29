@@ -1177,13 +1177,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd03ce7990b76480e915ed936e2ef90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 2084482095}
 --- !u!82 &2084482095
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2084482093}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ba2ae9858b0e7467f95f38c3f22a1572, type: 3}
