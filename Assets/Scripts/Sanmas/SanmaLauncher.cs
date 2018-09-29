@@ -17,6 +17,8 @@ namespace Sanmas
         private SanmaFactory factory;
 
         [SerializeField]
+        private GameObject laserRoot;
+        [SerializeField]
         private SpriteRenderer laser;
 
         [SerializeField]
@@ -34,7 +36,7 @@ namespace Sanmas
             inputEventProvider.OnEndPullAsObservable()
                 .Subscribe(_ =>
                 {
-                    SetLaunchAngle(0);
+                    SetLaserAngle(0);
                     SetLaserLength(0);
                     SpawnSanma();
                 })
@@ -46,7 +48,15 @@ namespace Sanmas
                 .AddTo(this);
 
             LaunchAngleAsObservable()
-                .Subscribe(x => SetLaunchAngle(x))
+                .WithLatestFrom(sanma, (angle, sanma) => (angle, sanma))
+                .Subscribe(x =>
+                {
+                    x.sanma.transform.rotation = Quaternion.Euler(0, 0, x.angle);
+                })
+                .AddTo(this);
+
+            LaunchAngleAsObservable()
+                .Subscribe(x => SetLaserAngle(x))
                 .AddTo(this);
 
             LaserPowerAsObservable()
@@ -54,9 +64,9 @@ namespace Sanmas
                 .AddTo(this);
         }
 
-        private void SetLaunchAngle(float angle)
+        private void SetLaserAngle(float angle)
         {
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            laserRoot.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
         private void SetLaserLength(float length)
