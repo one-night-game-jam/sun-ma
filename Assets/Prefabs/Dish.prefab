@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4452274395665388}
   - component: {fileID: 212732861708524962}
   - component: {fileID: 61812789565401760}
+  - component: {fileID: 114388410908154320}
   m_Layer: 0
   m_Name: Dish
   m_TagString: Untagged
@@ -66,6 +67,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &114388410908154320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1645494974225152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432f737a9f2a84e51b0a500dd29a6e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212732861708524962
 SpriteRenderer:
   m_ObjectHideFlags: 1
