@@ -21,22 +21,17 @@ namespace Sanmas
 
         private void Start()
         {
-            inputEventProvider.OnPullAsObservable()
-                .Subscribe(x =>
-                {
-                    // TODO: Update pulling effect
-                    Debug.Log(x);
-                })
-                .AddTo(this);
-
             LaunchPowerAsObservable()
-                .Select(power =>
-                {
-                    var sanma = factory.Create();
-                    return (power, sanma);
-                })
+                .Zip(SanmaLane(), (power, sanma) => (power, sanma))
                 .Subscribe(x => x.sanma.Launch(x.power))
                 .AddTo(this);
+        }
+
+        private IObservable<SanmaCore> SanmaLane()
+        {
+            return Observable.ReturnUnit()
+                .Merge(inputEventProvider.OnEndPullAsObservable().AsUnitObservable())
+                .Select(_ => factory.Create());
         }
 
         private IObservable<Vector2> LaunchPowerAsObservable()
