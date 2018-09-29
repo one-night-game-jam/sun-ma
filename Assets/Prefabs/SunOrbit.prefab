@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdecd2ba896e54114bd4e3aade476623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 100
-  firepower: 1
+  gravity: 5000
+  firepower: 2
 --- !u!212 &212816054846333974
 SpriteRenderer:
   m_ObjectHideFlags: 1
