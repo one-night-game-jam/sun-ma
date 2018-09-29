@@ -16,6 +16,9 @@ namespace Sanmas
         readonly ISubject<Unit> _freeze = new AsyncSubject<Unit>();
         public IObservable<Unit> OnFreezedAsObservable => _freeze;
 
+        readonly ReactiveProperty<float> _broiledValue = new ReactiveProperty<float>();
+        public IReadOnlyReactiveProperty<float> BroiledValue => _broiledValue;
+
         public void Launch(Vector2 velocity)
         {
             _launch.OnNext(velocity);
@@ -25,6 +28,11 @@ namespace Sanmas
         public void UpdateGravity(Vector2 gravity)
         {
             _gravity = gravity;
+        }
+
+        public void Broil(float value)
+        {
+            _broiledValue.Value += value;
         }
 
         public void Freeze()

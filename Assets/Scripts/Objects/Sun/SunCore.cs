@@ -6,11 +6,16 @@ namespace Objects.Sun
     public class SunCore : MonoBehaviour, ISanmaStayHandler, ISanmaExitHandler
     {
         [SerializeField]
-        private float gravity;
+        float gravity;
+
+        [SerializeField]
+        float firepower;
 
         public void OnStay(SanmaCore sanmaCore)
         {
-            sanmaCore.UpdateGravity((transform.position - sanmaCore.transform.position) * gravity);
+            var diff = transform.position - sanmaCore.transform.position;
+            sanmaCore.UpdateGravity(diff * gravity);
+            sanmaCore.Broil(diff.magnitude * firepower * Time.deltaTime);
         }
 
         public void OnExit(SanmaCore sanmaCore)
