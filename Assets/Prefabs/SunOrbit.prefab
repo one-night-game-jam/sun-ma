@@ -192,7 +192,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.89
+  m_Radius: 5
 --- !u!114 &114009802931528302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775ace7785cc340b283156e7ce7789d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: -20
+  rotationSpeed: -10
 --- !u!114 &114635557718882110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -239,8 +239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdecd2ba896e54114bd4e3aade476623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 5000
-  firepower: 2
+  gravity: 80
+  firepower: 0.01
+  maxDistance: 5
 --- !u!212 &212064391290086500
 SpriteRenderer:
   m_ObjectHideFlags: 1
