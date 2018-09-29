@@ -1,4 +1,5 @@
 ﻿using System;
+using Objects;
 using UniRx;
 using UnityEngine;
 
@@ -21,6 +22,21 @@ namespace Sanmas
         public void UpdateGravity(Vector2 gravity)
         {
             _gravity = gravity;
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            other.GetComponent<ISanmaEnterHandler>()?.OnEnter(this);
+        }
+
+        void OnTriggerStay2D(Collider2D other)
+        {
+            other.GetComponent<ISanmaStayHandler>()?.OnStay(this);
+        }
+
+        void OnTriggerExit2D(Collider2D other)
+        {
+            other.GetComponent<ISanmaExitHandler>()?.OnExit(this);
         }
     }
 }
