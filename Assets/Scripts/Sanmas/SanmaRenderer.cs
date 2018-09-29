@@ -8,8 +8,6 @@ namespace Sanmas
         [SerializeField] SanmaCore _core;
         [SerializeField] SpriteRenderer[] _renderers;
 
-        [SerializeField] float _wellDoneValue;
-
         void Start()
         {
             _core.BroiledValue
@@ -19,7 +17,7 @@ namespace Sanmas
 
         void BroiledChanged(float value)
         {
-            var rate = value / _wellDoneValue;
+            var rate = value;
 
             var color = _renderers[1].color;
             color.a = rate * 2f;
