@@ -8,7 +8,7 @@ namespace Sanmas
 
         public SanmaCore Create()
         {
-            return Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
+            return Instantiate(prefab, transform.position, Quaternion.identity, transform);
         }
     }
 }
