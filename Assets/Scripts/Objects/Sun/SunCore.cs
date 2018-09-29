@@ -11,11 +11,16 @@ namespace Objects.Sun
         [SerializeField]
         float firepower;
 
+        [SerializeField]
+        float maxDistance;
+
         public void OnStay(SanmaCore sanmaCore)
         {
             var diff = transform.position - sanmaCore.transform.position;
-            sanmaCore.UpdateGravity(diff * gravity);
-            sanmaCore.Broil(diff.magnitude * firepower * Time.deltaTime);
+            var strength = Mathf.Max(maxDistance * maxDistance - diff.sqrMagnitude, 0f);
+
+            sanmaCore.UpdateGravity(diff.normalized * strength * gravity);
+            sanmaCore.Broil(strength * firepower * Time.deltaTime);
         }
 
         public void OnExit(SanmaCore sanmaCore)

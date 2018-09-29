@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelSceneName: Level
   resultSceneName: Result
-  playTimeSeconds: 20
+  playTimeSeconds: 25
 --- !u!4 &1143644484
 Transform:
   m_ObjectHideFlags: 0
