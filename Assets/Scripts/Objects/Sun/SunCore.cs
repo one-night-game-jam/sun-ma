@@ -1,7 +1,7 @@
 using UnityEngine;
 using Sanmas;
 
-namespace Objects
+namespace Objects.Sun
 {
     public class SunCore : MonoBehaviour, ISanmaStayHandler, ISanmaExitHandler
     {
