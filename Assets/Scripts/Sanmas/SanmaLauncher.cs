@@ -16,6 +16,12 @@ namespace Sanmas
         [SerializeField]
         private SanmaFactory factory;
 
+        [SerializeField]
+        private SpriteRenderer laser;
+
+        [SerializeField]
+        private float laserPowerMultiplier;
+
         [Inject]
         private InputEventProvider inputEventProvider;
 
@@ -26,7 +32,12 @@ namespace Sanmas
             SpawnSanma();
 
             inputEventProvider.OnEndPullAsObservable()
-                .Subscribe(_ => SpawnSanma())
+                .Subscribe(_ =>
+                {
+                    SetLaunchAngle(0);
+                    SetLaserLength(0);
+                    SpawnSanma();
+                })
                 .AddTo(this);
 
             LaunchPowerAsObservable()
@@ -35,12 +46,27 @@ namespace Sanmas
                 .AddTo(this);
 
             LaunchAngleAsObservable()
-                .WithLatestFrom(sanma, (angle, sanma) => (angle, sanma))
-                .Subscribe(x =>
-                {
-                    x.sanma.transform.rotation = Quaternion.Euler(0, 0, x.angle);
-                })
+                .Subscribe(x => SetLaunchAngle(x))
                 .AddTo(this);
+
+            LaserPowerAsObservable()
+                .Subscribe(x => SetLaserLength(x))
+                .AddTo(this);
+        }
+
+        private void SetLaunchAngle(float angle)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+
+        private void SetLaserLength(float length)
+        {
+            var scale = laser.transform.localScale;
+            scale.y = length;
+            laser.transform.localScale = scale;
+            var position = laser.transform.localPosition;
+            position.y = length * laser.sprite.bounds.size.y / 2;
+            laser.transform.localPosition = position;
         }
 
         private void SpawnSanma()
@@ -58,6 +84,12 @@ namespace Sanmas
         {
             return inputEventProvider.OnPullAsObservable()
                 .Select(x => Vector2.SignedAngle(Vector2.down, x));
+        }
+
+        private IObservable<float> LaserPowerAsObservable()
+        {
+            return inputEventProvider.OnPullAsObservable()
+                .Select(x => x.magnitude * laserPowerMultiplier);
         }
     }
 }
