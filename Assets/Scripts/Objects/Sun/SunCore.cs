@@ -20,7 +20,7 @@ namespace Objects.Sun
             var strength = Mathf.Max(maxDistance * maxDistance - diff.sqrMagnitude, 0f);
 
             sanmaCore.UpdateGravity(diff.normalized * strength * gravity);
-            sanmaCore.Broil(strength * firepower * Time.deltaTime);
+            sanmaCore.Broil(strength * strength * firepower * Time.deltaTime);
         }
 
         public void OnExit(SanmaCore sanmaCore)
