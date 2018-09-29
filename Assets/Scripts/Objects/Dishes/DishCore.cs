@@ -20,7 +20,9 @@ namespace Objects.Dishes
                 .AddTo(this);
 
             _enter.Pairwise()
-                .Subscribe(x => Destroy(x.Previous))
+                .Select(x => x.Previous?.gameObject)
+                .Where(x => x != null)
+                .Subscribe(Destroy)
                 .AddTo(this);
         }
 
