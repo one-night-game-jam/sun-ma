@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 75
-  firepower: 0.001
+  firepower: 0.0012
   maxDistance: 5
 --- !u!212 &212064391290086500
 SpriteRenderer:
