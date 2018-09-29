@@ -11,7 +11,16 @@ namespace Objects.Dishes
 
         void Start()
         {
-            _enter.Subscribe(x => x.Freeze())
+            _enter.Subscribe(x =>
+                {
+                    x.Freeze();
+                    x.transform.SetParent(transform);
+                    x.transform.localPosition = Vector3.zero;
+                })
+                .AddTo(this);
+
+            _enter.Pairwise()
+                .Subscribe(x => Destroy(x.Previous))
                 .AddTo(this);
         }
 
