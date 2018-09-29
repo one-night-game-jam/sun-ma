@@ -27,7 +27,7 @@ namespace Sanmas
 
         void FixedUpdate()
         {
-            _rigidbody.AddForce(_core.Gravity, ForceMode2D.Force);
+            _rigidbody.AddForce(_core.Gravity * Time.deltaTime, ForceMode2D.Force);
         }
     }
 }
