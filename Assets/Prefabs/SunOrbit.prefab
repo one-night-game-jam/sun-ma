@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 100
+  firepower: 1
 --- !u!212 &212816054846333974
 SpriteRenderer:
   m_ObjectHideFlags: 1
