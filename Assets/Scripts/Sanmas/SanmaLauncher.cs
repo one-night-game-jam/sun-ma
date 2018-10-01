@@ -2,6 +2,7 @@ using System;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 using Players;
@@ -16,13 +17,13 @@ namespace Sanmas
         [SerializeField]
         private SanmaFactory factory;
 
-        [SerializeField]
-        private GameObject laserRoot;
-        [SerializeField]
-        private SpriteRenderer laser;
+        [SerializeField, FormerlySerializedAs("laserRoot")]
+        private GameObject estimateLineRoot;
+        [SerializeField, FormerlySerializedAs("laser")]
+        private SpriteRenderer estimateLine;
 
-        [SerializeField]
-        private float laserPowerMultiplier;
+        [SerializeField, FormerlySerializedAs("laserPowerMultiplier")]
+        private float estimateLineLengthMultiplier;
 
         [Inject]
         private InputEventProvider inputEventProvider;
@@ -36,8 +37,8 @@ namespace Sanmas
             inputEventProvider.OnEndPullAsObservable()
                 .Subscribe(_ =>
                 {
-                    SetLaserAngle(0);
-                    SetLaserLength(0);
+                    SetEstimateLineAngle(0);
+                    SetEstimateLineLength(0);
                     SpawnSanma();
                 })
                 .AddTo(this);
@@ -56,27 +57,27 @@ namespace Sanmas
                 .AddTo(this);
 
             LaunchAngleAsObservable()
-                .Subscribe(x => SetLaserAngle(x))
+                .Subscribe(x => SetEstimateLineAngle(x))
                 .AddTo(this);
 
-            LaserPowerAsObservable()
-                .Subscribe(x => SetLaserLength(x))
+            EstimateLineLengthAsObservable()
+                .Subscribe(x => SetEstimateLineLength(x))
                 .AddTo(this);
         }
 
-        private void SetLaserAngle(float angle)
+        private void SetEstimateLineAngle(float angle)
         {
-            laserRoot.transform.rotation = Quaternion.Euler(0, 0, angle);
+            estimateLineRoot.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
-        private void SetLaserLength(float length)
+        private void SetEstimateLineLength(float length)
         {
-            var scale = laser.transform.localScale;
+            var scale = estimateLine.transform.localScale;
             scale.y = length;
-            laser.transform.localScale = scale;
-            var position = laser.transform.localPosition;
-            position.y = length * laser.sprite.bounds.size.y / 2;
-            laser.transform.localPosition = position;
+            estimateLine.transform.localScale = scale;
+            var position = estimateLine.transform.localPosition;
+            position.y = length * estimateLine.sprite.bounds.size.y / 2;
+            estimateLine.transform.localPosition = position;
         }
 
         private void SpawnSanma()
@@ -96,10 +97,10 @@ namespace Sanmas
                 .Select(x => Vector2.SignedAngle(Vector2.down, x));
         }
 
-        private IObservable<float> LaserPowerAsObservable()
+        private IObservable<float> EstimateLineLengthAsObservable()
         {
             return inputEventProvider.OnPullAsObservable()
-                .Select(x => x.magnitude * laserPowerMultiplier);
+                .Select(x => x.magnitude * estimateLineLengthMultiplier);
         }
     }
 }
