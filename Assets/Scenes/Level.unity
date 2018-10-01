@@ -787,11 +787,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7832a7e470c493a935dd0e970b604a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchPowerMultiplier: 0.1
+  launchPowerMultiplier: 10
   factory: {fileID: 2034187968}
-  laserRoot: {fileID: 1689578076}
-  laser: {fileID: 1155540099}
-  laserPowerMultiplier: 0.01
+  estimateLineRoot: {fileID: 1689578076}
+  estimateLine: {fileID: 1155540099}
+  estimateLineLengthMultiplier: 2
 --- !u!1 &2038087472
 GameObject:
   m_ObjectHideFlags: 0
