@@ -171,9 +171,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c02fbf03eaaf0431983938330e4a5f95, type: 2}
-  m_sharedMaterial: {fileID: 21024895827511160, guid: c02fbf03eaaf0431983938330e4a5f95,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fc8fadb28eb4848b79afcd91c7bbf22d, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: c06627c1454de4adfacdfddf33f13d3c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -206,7 +205,7 @@ MonoBehaviour:
   m_fontStyle: 0
   m_textAlignment: 258
   m_isAlignmentEnumConverted: 1
-  m_characterSpacing: 0
+  m_characterSpacing: 5
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -597,9 +596,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c02fbf03eaaf0431983938330e4a5f95, type: 2}
-  m_sharedMaterial: {fileID: 21024895827511160, guid: c02fbf03eaaf0431983938330e4a5f95,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fc8fadb28eb4848b79afcd91c7bbf22d, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: c06627c1454de4adfacdfddf33f13d3c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -632,7 +630,7 @@ MonoBehaviour:
   m_fontStyle: 0
   m_textAlignment: 258
   m_isAlignmentEnumConverted: 1
-  m_characterSpacing: 0
+  m_characterSpacing: 5
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -824,9 +822,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c02fbf03eaaf0431983938330e4a5f95, type: 2}
-  m_sharedMaterial: {fileID: 21024895827511160, guid: c02fbf03eaaf0431983938330e4a5f95,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fc8fadb28eb4848b79afcd91c7bbf22d, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: c06627c1454de4adfacdfddf33f13d3c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -859,7 +856,7 @@ MonoBehaviour:
   m_fontStyle: 0
   m_textAlignment: 258
   m_isAlignmentEnumConverted: 1
-  m_characterSpacing: 0
+  m_characterSpacing: 5
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
