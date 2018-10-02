@@ -593,48 +593,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1449442602
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.69
-      objectReference: {fileID: 0}
-    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1689578076
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +691,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1814295928}
   m_CullTransparentMesh: 0
+--- !u!1001 &1852995925
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332928435994962, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b4db8e7819d904996b00b746d1b3dbaa, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &2034187967
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,9 +789,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPowerMultiplier: 0.1
   factory: {fileID: 2034187968}
-  laserRoot: {fileID: 1689578076}
-  laser: {fileID: 1155540099}
-  laserPowerMultiplier: 0.01
+  estimateLineRoot: {fileID: 1689578076}
+  estimateLine: {fileID: 1155540099}
+  estimateLineLengthMultiplier: 0.01
 --- !u!1 &2038087472
 GameObject:
   m_ObjectHideFlags: 0
