@@ -12,7 +12,7 @@ namespace Titles
         [SerializeField]
         string sceneName;
 
-        private void Start()
+        protected override void Start()
         {
             this.OnPointerClickAsObservable()
                 .Subscribe(_ =>
