@@ -11,7 +11,7 @@ namespace Players
         public IObservable<Vector2> OnPullAsObservable()
         {
             return this.OnDragAsObservable()
-                .Select(x => x.position - x.pressPosition);
+                .Select(x => (x.position - x.pressPosition) / Screen.dpi);
         }
 
         public IObservable<Vector2> OnEndPullAsObservable()
