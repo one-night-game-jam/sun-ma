@@ -45,23 +45,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1313449946242748
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4303074306099472}
-  - component: {fileID: 114009802931528302}
-  - component: {fileID: 58628068943011834}
-  m_Layer: 0
-  m_Name: Reaper
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1583409164344282
 GameObject:
   m_ObjectHideFlags: 1
@@ -72,6 +55,8 @@ GameObject:
   - component: {fileID: 4721358760623382}
   - component: {fileID: 212064391290086500}
   - component: {fileID: 114291447515878142}
+  - component: {fileID: 58672268866610442}
+  - component: {fileID: 114447224847133428}
   m_Layer: 0
   m_Name: Giragira
   m_TagString: Untagged
@@ -94,19 +79,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4303074306099472
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1313449946242748}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4347434621055762}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4332928435994962
 Transform:
   m_ObjectHideFlags: 1
@@ -133,7 +105,6 @@ Transform:
   m_Children:
   - {fileID: 4721358760623382}
   - {fileID: 4873768626113904}
-  - {fileID: 4303074306099472}
   m_Father: {fileID: 4332928435994962}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -163,12 +134,12 @@ Transform:
   m_Father: {fileID: 4347434621055762}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58628068943011834
+--- !u!58 &58672268866610442
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1313449946242748}
+  m_GameObject: {fileID: 1583409164344282}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -177,7 +148,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 3
 --- !u!58 &58938328069682896
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -192,18 +163,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
---- !u!114 &114009802931528302
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1313449946242748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad41afe4111044e05a531ba0c4342f8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 8
 --- !u!114 &114291447515878142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -228,6 +188,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: -10
+--- !u!114 &114447224847133428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1583409164344282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f06bf862bdd84744a8990a084ade3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heatingPower: 1
+  pow: 2
 --- !u!114 &114635557718882110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -239,9 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdecd2ba896e54114bd4e3aade476623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 75
-  firepower: 0.0012
-  maxDistance: 5
+  gravity: 1800
 --- !u!212 &212064391290086500
 SpriteRenderer:
   m_ObjectHideFlags: 1

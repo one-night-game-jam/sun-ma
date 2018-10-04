@@ -1,6 +1,7 @@
 ﻿using System;
 using Objects;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Sanmas
@@ -19,18 +20,39 @@ namespace Sanmas
         readonly FloatReactiveProperty _broiledValue = new FloatReactiveProperty();
         public IReadOnlyReactiveProperty<float> BroiledValue => _broiledValue;
 
+        void Start()
+        {
+            this.OnTriggerStay2DAsObservable()
+                .Select(x => x.GetComponent<IGravitationalField>())
+                .Where(x => x != null)
+                .Select(x => x.CalcGravity(transform.position))
+                .Merge(this.FixedUpdateAsObservable()
+                    .Select(_ => Vector2.zero))
+                .BatchFrame(0, FrameCountType.FixedUpdate)
+                .Select(v => v.Sum())
+                .Subscribe(UpdateGravity)
+                .AddTo(this);
+
+            this.OnTriggerStay2DAsObservable()
+                .Select(x => x.GetComponent<IBroiler>())
+                .Where(x => x != null)
+                .Select(x => x.CalcPower(transform.position) * Time.deltaTime)
+                .Subscribe(Broil)
+                .AddTo(this);
+        }
+
         public void Launch(Vector2 velocity)
         {
             _launch.OnNext(velocity);
             _launch.OnCompleted();
         }
 
-        public void UpdateGravity(Vector2 gravity)
+        void UpdateGravity(Vector2 gravity)
         {
             _gravity = gravity;
         }
 
-        public void Broil(float value)
+        void Broil(float value)
         {
             _broiledValue.Value += value;
         }
@@ -44,16 +66,6 @@ namespace Sanmas
         void OnTriggerEnter2D(Collider2D other)
         {
             other.GetComponent<ISanmaEnterHandler>()?.OnEnter(this);
-        }
-
-        void OnTriggerStay2D(Collider2D other)
-        {
-            other.GetComponent<ISanmaStayHandler>()?.OnStay(this);
-        }
-
-        void OnTriggerExit2D(Collider2D other)
-        {
-            other.GetComponent<ISanmaExitHandler>()?.OnExit(this);
         }
     }
 }
