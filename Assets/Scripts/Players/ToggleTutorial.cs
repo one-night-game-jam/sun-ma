@@ -9,7 +9,7 @@ public class ToggleTutorial : UIBehaviour
     [SerializeField]
     GameObject tutorialRoot;
 
-    private void Start()
+    protected override void Start()
     {
         this.OnPointerDownAsObservable()
             .Subscribe(_ => tutorialRoot.SetActive(false))

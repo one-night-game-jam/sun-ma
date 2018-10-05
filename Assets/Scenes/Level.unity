@@ -825,8 +825,9 @@ MonoBehaviour:
   _autoRun: 1
   _parentNewObjectsUnderRoot: 0
   _contractNames: []
-  _parentContractName: GameCore
-  _parentContractNames: []
+  _parentContractName: 
+  _parentContractNames:
+  - GameCore
 --- !u!4 &2038087474
 Transform:
   m_ObjectHideFlags: 0
