@@ -4,6 +4,8 @@ using System.Linq;
 using UniRx.Async;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
+using UIs.Common;
 
 namespace Scenes
 {
@@ -18,6 +20,9 @@ namespace Scenes
         [SerializeField]
         float playTimeSeconds;
 
+        [Inject]
+        FadeInOut fadeInOut;
+
         async void Start()
         {
             var loaded = Enumerable
@@ -29,8 +34,10 @@ namespace Scenes
             }
 
             await UniTask.Delay(TimeSpan.FromSeconds(playTimeSeconds));
+            await fadeInOut.FadeIn();
             await UnloadScene(levelSceneName);
             await LoadSceneAdditive(resultSceneName);
+            await fadeInOut.FadeOut();
         }
 
         static async UniTask LoadSceneAdditive(string sceneName)
