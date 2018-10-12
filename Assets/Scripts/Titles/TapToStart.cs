@@ -16,14 +16,14 @@ namespace Titles
         string sceneName;
 
         [Inject]
-        FadeInOut fadeInOut;
+        SceneCurtain sceneCurtain;
 
         protected override void Start()
         {
             this.OnPointerClickAsObservable()
                 .Subscribe(async _ =>
                 {
-                    await fadeInOut.FadeIn();
+                    await sceneCurtain.Show();
                     SceneManager.LoadScene(sceneName);
                 })
                 .AddTo(this);

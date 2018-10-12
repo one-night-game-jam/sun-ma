@@ -21,7 +21,7 @@ namespace Scenes
         float playTimeSeconds;
 
         [Inject]
-        FadeInOut fadeInOut;
+        SceneCurtain sceneCurtain;
 
         async void Start()
         {
@@ -34,10 +34,10 @@ namespace Scenes
             }
 
             await UniTask.Delay(TimeSpan.FromSeconds(playTimeSeconds));
-            await fadeInOut.FadeIn();
+            await sceneCurtain.Show();
             await UnloadScene(levelSceneName);
             await LoadSceneAdditive(resultSceneName);
-            await fadeInOut.FadeOut();
+            await sceneCurtain.Hide();
         }
 
         static async UniTask LoadSceneAdditive(string sceneName)

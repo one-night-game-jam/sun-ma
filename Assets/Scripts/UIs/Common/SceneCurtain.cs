@@ -7,7 +7,7 @@ using UniRx.Async;
 
 namespace UIs.Common
 {
-    public class FadeInOut : MonoBehaviour
+    public class SceneCurtain : MonoBehaviour
     {
         [SerializeField]
         private Animator animator;
@@ -25,13 +25,13 @@ namespace UIs.Common
             _hideAnimatonEnd.OnNext(Unit.Default);
         }
 
-        public async UniTask FadeIn()
+        public async UniTask Show()
         {
             animator.SetBool("IsVisible", true);
             await _showAnimatonEnd.First();
         }
 
-        public async UniTask FadeOut()
+        public async UniTask Hide()
         {
             animator.SetBool("IsVisible", false);
             await _hideAnimatonEnd.First();
