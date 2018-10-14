@@ -154,7 +154,8 @@ PlayerSettings:
   applicationIdentifier:
     Standalone: com.Company.ProductName
     iOS: com.neoneobeam.sun-ma
-  buildNumber: {}
+  buildNumber:
+    iOS: 1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
