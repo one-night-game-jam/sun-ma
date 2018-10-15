@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 using UniRx;
 using UniRx.Async;
 
@@ -12,29 +9,29 @@ namespace UIs.Common
         [SerializeField]
         private Animator animator;
 
-        private ISubject<Unit> _showAnimatonEnd = new Subject<Unit>();
-        private ISubject<Unit> _hideAnimatonEnd = new Subject<Unit>();
+        private readonly ISubject<Unit> _showAnimationEnd = new Subject<Unit>();
+        private readonly ISubject<Unit> _hideAnimationEnd = new Subject<Unit>();
 
         public void OnShowAnimationEnd()
         {
-            _showAnimatonEnd.OnNext(Unit.Default);
+            _showAnimationEnd.OnNext(Unit.Default);
         }
 
         public void OnHideAnimationEnd()
         {
-            _hideAnimatonEnd.OnNext(Unit.Default);
+            _hideAnimationEnd.OnNext(Unit.Default);
         }
 
         public async UniTask Show()
         {
             animator.SetBool("IsVisible", true);
-            await _showAnimatonEnd.First();
+            await _showAnimationEnd.First();
         }
 
         public async UniTask Hide()
         {
             animator.SetBool("IsVisible", false);
-            await _hideAnimatonEnd.First();
+            await _hideAnimationEnd.First();
         }
     }
 }
