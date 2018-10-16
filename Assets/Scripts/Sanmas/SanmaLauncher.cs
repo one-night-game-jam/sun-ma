@@ -28,7 +28,7 @@ namespace Sanmas
         [Inject]
         private InputEventProvider inputEventProvider;
 
-        private ISubject<SanmaCore> sanma = new ReplaySubject<SanmaCore>();
+        private readonly ISubject<SanmaCore> sanma = new ReplaySubject<SanmaCore>();
 
         private void Start()
         {
@@ -57,11 +57,11 @@ namespace Sanmas
                 .AddTo(this);
 
             LaunchAngleAsObservable()
-                .Subscribe(x => SetEstimateLineAngle(x))
+                .Subscribe(SetEstimateLineAngle)
                 .AddTo(this);
 
             EstimateLineLengthAsObservable()
-                .Subscribe(x => SetEstimateLineLength(x))
+                .Subscribe(SetEstimateLineLength)
                 .AddTo(this);
         }
 
