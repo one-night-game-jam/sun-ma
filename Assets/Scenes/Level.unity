@@ -791,7 +791,7 @@ MonoBehaviour:
   factory: {fileID: 2034187968}
   estimateLineRoot: {fileID: 1689578076}
   estimateLine: {fileID: 1155540099}
-  estimateLineLengthMultiplier: 2
+  estimateLineLengthMultiplier: 2.4
 --- !u!1 &2038087472
 GameObject:
   m_ObjectHideFlags: 0

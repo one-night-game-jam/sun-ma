@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775ace7785cc340b283156e7ce7789d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: -12
+  rotationSpeed: -11
 --- !u!114 &114447224847133428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,8 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f06bf862bdd84744a8990a084ade3e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatingPower: 0.95
-  pow: 1.9
+  heatingPower: 1
+  pow: 2
 --- !u!114 &114635557718882110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdecd2ba896e54114bd4e3aade476623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 1700
+  gravity: 1800
 --- !u!212 &212064391290086500
 SpriteRenderer:
   m_ObjectHideFlags: 1
