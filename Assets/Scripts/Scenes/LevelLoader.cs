@@ -1,5 +1,4 @@
-﻿using System;
-using UIs.Common;
+﻿using UIs.Common;
 using UniRx.Async;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,9 +17,6 @@ namespace Scenes
         string levelSceneName;
         [SerializeField]
         string resultSceneName;
-
-        [SerializeField]
-        float playTimeSeconds;
 
         [Inject]
         SceneCurtain sceneCurtain;
@@ -58,10 +54,6 @@ namespace Scenes
             await LoadSceneAsync(gameCoreSceneName);
             await LoadSceneAsync(levelSceneName, LoadSceneMode.Additive);
             await sceneCurtain.Hide();
-
-            // FIXME: レベル側の終了条件みたいなやつに切り出す
-            await UniTask.Delay(TimeSpan.FromSeconds(playTimeSeconds));
-            await LoadResultAsync();
         }
 
         async UniTask LoadResultAsync()
