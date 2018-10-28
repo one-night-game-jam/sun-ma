@@ -7,13 +7,12 @@ namespace Installers
 {
     public class LevelLoaderInstaller : MonoInstaller<LevelLoaderInstaller>
     {
-        [SerializeField] LevelLoader levelLoaderPrefab;
         [SerializeField] SceneCurtain sceneCurtainPrefab;
 
         public override void InstallBindings()
         {
+            Container.Bind<LevelLoader>().AsSingle();
             Container.Bind<SceneCurtain>().FromComponentInNewPrefab(sceneCurtainPrefab).AsSingle();
-            Container.Bind<LevelLoader>().FromComponentInNewPrefab(levelLoaderPrefab).AsSingle();
         }
     }
 }

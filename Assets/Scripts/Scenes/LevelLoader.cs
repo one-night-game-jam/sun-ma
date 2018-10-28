@@ -1,29 +1,26 @@
 ﻿using UIs.Common;
 using UniRx.Async;
-using UnityEngine;
 using UnityEngine.SceneManagement;
-using Zenject;
-using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
 namespace Scenes
 {
-    public class LevelLoader : MonoBehaviour
+    public class LevelLoader
     {
-        [SerializeField]
-        string titleSceneName;
-        [SerializeField]
-        string gameCoreSceneName;
-        [SerializeField]
-        string levelSceneName;
-        [SerializeField]
-        string resultSceneName;
+        const string TitleSceneName = "Title";
+        const string GameCoreSceneName = "GameCore";
+        const string LevelSceneName = "Level";
+        const string ResultSceneName = "Result";
 
-        [Inject]
-        SceneCurtain sceneCurtain;
+        readonly SceneCurtain sceneCurtain;
+
+        public LevelLoader(SceneCurtain sceneCurtain)
+        {
+            this.sceneCurtain = sceneCurtain;
+        }
 
         public void LoadTitle(bool immediately = false)
         {
-            LoadScene(titleSceneName, immediately);
+            LoadScene(TitleSceneName, immediately);
         }
 
         public void LoadScene(string sceneName, bool immediately = false)
@@ -51,8 +48,8 @@ namespace Scenes
         async UniTask LoadLevelAsync()
         {
             await sceneCurtain.Show();
-            await LoadSceneAsync(gameCoreSceneName);
-            await LoadSceneAsync(levelSceneName, LoadSceneMode.Additive);
+            await LoadSceneAsync(GameCoreSceneName);
+            await LoadSceneAsync(LevelSceneName, LoadSceneMode.Additive);
             await sceneCurtain.Hide();
         }
 
@@ -60,8 +57,8 @@ namespace Scenes
         {
             await sceneCurtain.Show();
             await UniTask.WhenAll(
-                UnloadSceneAsync(levelSceneName),
-                LoadSceneAsync(resultSceneName, LoadSceneMode.Additive));
+                UnloadSceneAsync(LevelSceneName),
+                LoadSceneAsync(ResultSceneName, LoadSceneMode.Additive));
             await sceneCurtain.Hide();
         }
 
