@@ -28,9 +28,9 @@ namespace Scenes
             LoadSceneWithCurtainAsync(sceneName, immediately).Forget();
         }
 
-        public void LoadLevel()
+        public void LoadLevel(string levelSceneName = LevelSceneName)
         {
-            LoadLevelAsync().Forget();
+            LoadLevelAsync(levelSceneName).Forget();
         }
 
         public void LoadResult()
@@ -45,11 +45,11 @@ namespace Scenes
             await sceneCurtain.Hide();
         }
 
-        async UniTask LoadLevelAsync()
+        async UniTask LoadLevelAsync(string levelSceneName)
         {
             await sceneCurtain.Show();
             await LoadSceneAsync(GameCoreSceneName);
-            await LoadSceneAsync(LevelSceneName, LoadSceneMode.Additive);
+            await LoadSceneAsync(levelSceneName, LoadSceneMode.Additive);
             await sceneCurtain.Hide();
         }
 
