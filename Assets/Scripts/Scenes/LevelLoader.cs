@@ -1,51 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using UIs.Common;
 using UniRx.Async;
-using UnityEngine;
 using UnityEngine.SceneManagement;
-using Zenject;
-using UIs.Common;
 
 namespace Scenes
 {
-    public class LevelLoader : MonoBehaviour
+    public class LevelLoader
     {
-        [SerializeField]
-        string levelSceneName;
+        const string TitleSceneName = "Title";
+        const string GameCoreSceneName = "GameCore";
+        const string LevelSceneName = "Level";
+        const string ResultSceneName = "Result";
 
-        [SerializeField]
-        string resultSceneName;
+        readonly SceneCurtain sceneCurtain;
 
-        [SerializeField]
-        float playTimeSeconds;
-
-        [Inject]
-        SceneCurtain sceneCurtain;
-
-        async void Start()
+        public LevelLoader(SceneCurtain sceneCurtain)
         {
-            var loaded = Enumerable
-                .Select(Enumerable.Range(0, SceneManager.sceneCount), SceneManager.GetSceneAt)
-                .Select(s => s.name);
-            if (!loaded.Contains(levelSceneName))
-            {
-                await LoadSceneAdditive(levelSceneName);
-            }
+            this.sceneCurtain = sceneCurtain;
+        }
 
-            await UniTask.Delay(TimeSpan.FromSeconds(playTimeSeconds));
-            await sceneCurtain.Show();
-            await UnloadScene(levelSceneName);
-            await LoadSceneAdditive(resultSceneName);
+        public void LoadTitle(bool immediately = false)
+        {
+            LoadScene(TitleSceneName, immediately);
+        }
+
+        public void LoadScene(string sceneName, bool immediately = false)
+        {
+            LoadSceneWithCurtainAsync(sceneName, immediately).Forget();
+        }
+
+        public void LoadLevel()
+        {
+            LoadLevelAsync().Forget();
+        }
+
+        public void LoadResult()
+        {
+            LoadResultAsync().Forget();
+        }
+
+        async UniTask LoadSceneWithCurtainAsync(string sceneName, bool immediately)
+        {
+            await sceneCurtain.Show(immediately);
+            await LoadSceneAsync(sceneName);
             await sceneCurtain.Hide();
         }
 
-        static async UniTask LoadSceneAdditive(string sceneName)
+        async UniTask LoadLevelAsync()
         {
-            await SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            await sceneCurtain.Show();
+            await LoadSceneAsync(GameCoreSceneName);
+            await LoadSceneAsync(LevelSceneName, LoadSceneMode.Additive);
+            await sceneCurtain.Hide();
         }
 
-        static async UniTask UnloadScene(string sceneName)
+        async UniTask LoadResultAsync()
+        {
+            await sceneCurtain.Show();
+            await UniTask.WhenAll(
+                UnloadSceneAsync(LevelSceneName),
+                LoadSceneAsync(ResultSceneName, LoadSceneMode.Additive));
+            await sceneCurtain.Hide();
+        }
+
+        static async UniTask LoadSceneAsync(string sceneName, LoadSceneMode mode = LoadSceneMode.Single)
+        {
+            await SceneManager.LoadSceneAsync(sceneName, mode);
+        }
+
+        static async UniTask UnloadSceneAsync(string sceneName)
         {
             await SceneManager.UnloadSceneAsync(sceneName);
         }

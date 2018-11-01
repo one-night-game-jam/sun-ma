@@ -7,10 +7,10 @@ namespace UIs.Common
     public class SceneCurtain : MonoBehaviour
     {
         [SerializeField]
-        private Animator animator;
+        Animator animator;
 
-        private readonly ISubject<Unit> _showAnimationEnd = new Subject<Unit>();
-        private readonly ISubject<Unit> _hideAnimationEnd = new Subject<Unit>();
+        readonly ISubject<Unit> _showAnimationEnd = new Subject<Unit>();
+        readonly ISubject<Unit> _hideAnimationEnd = new Subject<Unit>();
 
         public void OnShowAnimationEnd()
         {
@@ -22,15 +22,15 @@ namespace UIs.Common
             _hideAnimationEnd.OnNext(Unit.Default);
         }
 
-        public async UniTask Show()
+        public async UniTask Show(bool immediately = false)
         {
-            animator.SetBool("IsVisible", true);
+            animator.SetTrigger(immediately ? "ShowImmediately" : "Show");
             await _showAnimationEnd.First();
         }
 
         public async UniTask Hide()
         {
-            animator.SetBool("IsVisible", false);
+            animator.SetTrigger("Hide");
             await _hideAnimationEnd.First();
         }
     }
