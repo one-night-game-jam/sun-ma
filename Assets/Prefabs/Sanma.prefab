@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114142699421199904}
   - component: {fileID: 50949553505216742}
   - component: {fileID: 70160460845738032}
+  - component: {fileID: 114902463049771736}
   m_Layer: 0
   m_Name: Sanma
   m_TagString: Untagged
@@ -198,6 +199,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _core: {fileID: 114957979057286412}
   _rigidbody: {fileID: 50949553505216742}
+--- !u!114 &114902463049771736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1411372610663962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d044e37e139419e8d953da1c305838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _core: {fileID: 114957979057286412}
 --- !u!114 &114957979057286412
 MonoBehaviour:
   m_ObjectHideFlags: 1
