@@ -15,6 +15,11 @@ namespace Sanmas
                 .Subscribe(Launch)
                 .AddTo(this);
 
+            _core.OnWarpAsObservable
+                .ObserveOn(Scheduler.MainThreadFixedUpdate)
+                .Subscribe(Warp)
+                .AddTo(this);
+
             _core.OnFreezedAsObservable
                 .Subscribe(_ => _rigidbody.bodyType = RigidbodyType2D.Static)
                 .AddTo(this);
@@ -24,6 +29,11 @@ namespace Sanmas
         {
             _rigidbody.bodyType = RigidbodyType2D.Dynamic;
             _rigidbody.AddForce(force, ForceMode2D.Impulse);
+        }
+
+        void Warp(Vector2 position)
+        {
+            _rigidbody.MovePosition(position);
         }
 
         void FixedUpdate()

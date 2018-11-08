@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using Objects;
+using Objects.Wormhole;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -20,6 +22,9 @@ namespace Sanmas
         readonly FloatReactiveProperty _broiledValue = new FloatReactiveProperty();
         public IReadOnlyReactiveProperty<float> BroiledValue => _broiledValue;
 
+        readonly ISubject<Vector2> _warp = new Subject<Vector2>();
+        public IObservable<Vector2> OnWarpAsObservable => _warp;
+
         void Start()
         {
             this.OnTriggerStay2DAsObservable()
@@ -39,6 +44,23 @@ namespace Sanmas
                 .Select(x => x.CalcPower(transform.position) * Time.deltaTime)
                 .Subscribe(Broil)
                 .AddTo(this);
+
+            this.OnTriggerEnter2DAsObservable()
+                .Select(x => x.GetComponent<ISanmaEnterHandler>())
+                .Subscribe(x => x?.OnEnter(this))
+                .AddTo(this);
+
+            this.OnTriggerEnter2DAsObservable()
+                .TakeUntil(_freeze)
+                .Select(x => x.GetComponent<Wormhole>())
+                .Where(x => x != null)
+                .Select(x => x.WarpPoint())
+                .StartWith(Vector2.zero)
+                .Buffer(2)
+                .Where(x => x.Count == 2)
+                .Select(x => x.Last())
+                .Subscribe(Warp)
+                .AddTo(this);
         }
 
         public void Launch(Vector2 velocity)
@@ -57,15 +79,15 @@ namespace Sanmas
             _broiledValue.Value += value;
         }
 
+        void Warp(Vector2 position)
+        {
+            _warp.OnNext(position);
+        }
+
         public void Freeze()
         {
             _freeze.OnNext(Unit.Default);
             _freeze.OnCompleted();
-        }
-
-        void OnTriggerEnter2D(Collider2D other)
-        {
-            other.GetComponent<ISanmaEnterHandler>()?.OnEnter(this);
         }
     }
 }
